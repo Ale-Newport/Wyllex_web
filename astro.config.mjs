@@ -10,5 +10,5 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'never',
   integrations: [react(), sitemap()],
-  vite: { plugins: [tailwindcss()] },
+  vite: { plugins: [tailwindcss()], build: { assetsInlineLimit: 0 } },
 });

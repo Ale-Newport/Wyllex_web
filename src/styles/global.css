@@ -1,6 +1,19 @@
-@import '@fontsource-variable/manrope';
-@import '@fontsource-variable/dm-sans';
 @import 'tailwindcss';
+
+@font-face {
+  font-family: 'Manrope Variable';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'DM Sans Variable';
+  font-style: normal;
+  font-weight: 100 1000;
+  font-display: swap;
+  src: url('@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2') format('woff2');
+}
 
 @theme {
   --color-ink: #151713;
@@ -3118,6 +3131,14 @@ summary:focus-visible {
     font-size: 7px;
     text-align: center;
   }
+  .experience-bottom::before {
+    content: '';
+    position: absolute;
+    inset: -30px -20px -14px;
+    z-index: -1;
+    background: linear-gradient(transparent, #141610 45%);
+    pointer-events: none;
+  }
   .chapter-nav button {
     width: 29px;
     height: 23px;
@@ -3630,5 +3651,28 @@ summary:focus-visible {
 @media (prefers-reduced-motion: reduce) {
   .phone-motion {
     transform: none !important;
+  }
+}
+
+/* Render the primary message immediately; chapter changes retain their soft entrance. */
+.experience[data-stage='0'] .story-copy {
+  animation: none;
+}
+@media (max-width: 767px) and (min-height: 741px) {
+  .phone-stage {
+    scale: 0.6;
+  }
+}
+@media (max-width: 767px) and (max-height: 740px) {
+  .experience[data-stage='3'] .phone-stage {
+    scale: 0.4;
+  }
+}
+@media (max-width: 767px) and (max-height: 600px) {
+  .experience[data-stage='3'] .phone-stage {
+    scale: 0.32;
+  }
+  .experience[data-stage='8'] .iphone-context {
+    display: none;
   }
 }
