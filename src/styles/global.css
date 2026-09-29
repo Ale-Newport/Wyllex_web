@@ -335,6 +335,7 @@ summary:focus-visible {
   position: relative;
   display: grid;
   grid-template-columns: 1fr 430px 80px;
+  grid-template-rows: minmax(0, 1fr);
   align-items: center;
   padding-top: 60px;
   padding-bottom: 40px;

@@ -12,6 +12,10 @@ test('the continuous phone story reaches every chapter without console errors', 
   await page.goto('/');
   await expect(page.locator('.experience')).toHaveAttribute('data-stage', '0');
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Law worth');
+  const phone = await page.locator('.phone-frame').boundingBox();
+  expect(phone).not.toBeNull();
+  expect(phone!.y).toBeGreaterThan(70);
+  expect(phone!.y + phone!.height).toBeLessThan(page.viewportSize()!.height);
   await page.screenshot({ path: `test-results/${testInfo.project.name}-hero.png` });
   for (const [index, name] of [
     'Your subjects',
