@@ -1,0 +1,113 @@
+---
+import { primaryCta } from '../../config/site';
+---
+
+<header class:list={['site-header', { 'on-light': Astro.url.pathname !== '/' }]} id="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="/" aria-label="Wyllex home">
+      wyllex
+      <span class="brand-star" aria-hidden="true">
+        ✳
+      </span>
+    </a>
+    <nav class="desktop-nav" aria-label="Main navigation">
+      <a href="/#product">Product</a>
+      <a href="/#subjects">Subjects</a>
+      <a href="/#how-it-works">How it works</a>
+    </nav>
+    <a class="nav-cta" href={primaryCta.href}>
+      {primaryCta.label === 'Join the waitlist' ? 'Join waitlist' : 'Get the app'}
+    </a>
+    <button
+      class="mobile-menu-toggle"
+      aria-expanded="false"
+      aria-controls="mobile-nav"
+      aria-label="Open navigation"
+    >
+      <svg
+        width="17"
+        height="17"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <path d="M4 8h16M4 16h16" />
+      </svg>
+    </button>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+    <a href="/#product">Product</a>
+    <a href="/#subjects">Subjects</a>
+    <a href="/#how-it-works">How it works</a>
+    <a href={primaryCta.href}>{primaryCta.label}</a>
+  </nav>
+</header>
+<script>
+  const header = document.querySelector<HTMLElement>('#site-header');
+  const toggle = document.querySelector<HTMLButtonElement>('.mobile-menu-toggle');
+  const menu = document.querySelector<HTMLElement>('#mobile-nav');
+  const lightSections = document.querySelectorAll('[data-theme="light"]');
+  let ticking = false;
+  function updateHeader() {
+    if (!header) return;
+    header.classList.toggle('scrolled', window.scrollY > 20);
+    const onLight = Array.from(lightSections).some((section) => {
+      const rect = section.getBoundingClientRect();
+      return rect.top <= 45 && rect.bottom > 45;
+    });
+    header.classList.toggle('on-light', onLight);
+    const sections = ['product', 'subjects', 'how-it-works'];
+    let active = '';
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < 150) active = id;
+    }
+    document.querySelectorAll('.desktop-nav a').forEach((link) => {
+      if (link.getAttribute('href') === `/#${active}`)
+        link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+    ticking = false;
+  }
+  window.addEventListener(
+    'scroll',
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
+  updateHeader();
+  function closeMenu() {
+    if (menu && toggle) {
+      menu.hidden = true;
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open navigation');
+    }
+  }
+  toggle?.addEventListener('click', () => {
+    if (menu) {
+      menu.hidden = !menu.hidden;
+      toggle.setAttribute('aria-expanded', String(!menu.hidden));
+      toggle.setAttribute('aria-label', menu.hidden ? 'Open navigation' : 'Close navigation');
+    }
+  });
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && menu && !menu.hidden) {
+      closeMenu();
+      toggle?.focus();
+    }
+  });
+  document.addEventListener('click', (event) => {
+    if (menu && !menu.hidden && event.target instanceof Node && !header?.contains(event.target))
+      closeMenu();
+  });
+  window.matchMedia('(min-width:768px)').addEventListener('change', (event) => {
+    if (event.matches) closeMenu();
+  });
+</script>

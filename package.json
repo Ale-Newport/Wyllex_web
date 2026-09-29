@@ -1,0 +1,57 @@
+{
+  "name": "wyllex-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0",
+    "pages:dev": "wrangler pages dev dist --port 8788 --local-protocol https",
+    "lint": "astro check && eslint .",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "check": "npm run lint && npm run test && npm run build",
+    "deploy": "npm run check && wrangler pages deploy dist",
+    "assets": "node scripts/generate-og.mjs"
+  },
+  "dependencies": {
+    "@astrojs/react": "7.0.0",
+    "@astrojs/sitemap": "3.7.4",
+    "@fontsource-variable/dm-sans": "5.3.0",
+    "@fontsource-variable/manrope": "5.3.0",
+    "@tailwindcss/vite": "4.3.3",
+    "astro": "7.3.5",
+    "gsap": "3.15.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "tailwindcss": "4.3.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@axe-core/playwright": "4.13.0",
+    "@cloudflare/workers-types": "5.20260929.1",
+    "@eslint/js": "9.39.5",
+    "@playwright/test": "1.63.0",
+    "@types/node": "26.6.3",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "eslint": "9.39.5",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "prettier": "3.9.9",
+    "prettier-plugin-astro": "1.1.0",
+    "sharp": "0.35.5",
+    "typescript": "6.0.3",
+    "typescript-eslint": "8.71.0",
+    "vitest": "5.0.2",
+    "wrangler": "4.143.0"
+  },
+  "overrides": {
+    "miniflare": {
+      "undici": "7.29.1"
+    }
+  }
+}

@@ -1,0 +1,2 @@
+# Canonical www redirect is configured as a Cloudflare zone Redirect Rule.
+# See README: Custom domain. Pages _redirects accepts relative source paths only.

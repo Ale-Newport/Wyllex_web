@@ -1,0 +1,169 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProductExperience from '../components/sections/ProductExperience';
+import SubjectExplorer from '../components/sections/SubjectExplorer';
+import Waitlist from '../components/sections/Waitlist';
+import { Icon } from '../components/ui/Icon';
+import { site } from '../config/site';
+---
+
+<Layout>
+  <ProductExperience client:load />
+  <div class="page-content" data-theme="light">
+    <section class="section-intro container" aria-labelledby="law-heading">
+      <div class="eyebrow">
+        <span class="tiny-star" aria-hidden="true">
+          ✳
+        </span>
+        ONE DISCIPLINE. A DIFFERENT APPROACH.
+      </div>
+      <div class="intro-grid">
+        <h2 class="section-heading" id="law-heading">
+          Built for Law.
+          <br />
+          <em>Not just learning.</em>
+        </h2>
+        <p>
+          Law has its own language. Its own logic. Its own “wait, what?” moments. Wyllex connects
+          the cases, rules, and ideas behind your degree.
+        </p>
+      </div>
+      <div class="law-taxonomy">
+        <span>
+          <small>01</small>Modules
+        </span>
+        <span>
+          <small>02</small>Cases
+        </span>
+        <span>
+          <small>03</small>Statutes
+        </span>
+        <span>
+          <small>04</small>Legal principles
+        </span>
+        <span>
+          <small>05</small>Revision
+        </span>
+      </div>
+    </section>
+    <section class="subjects-section container" id="subjects" aria-label="Explore Law subjects">
+      <div class="section-topline">
+        <h2 class="eyebrow">FAMILIAR SUBJECTS. FRESH PERSPECTIVES.</h2>
+        <span>Find your next rabbit hole.</span>
+      </div>
+      <SubjectExplorer client:visible />
+    </section>
+    <section class="how-section" id="how-it-works" aria-labelledby="how-heading">
+      <div class="container">
+        <div class="how-heading">
+          <div>
+            <div class="eyebrow">LESS SETUP. MORE “I GET IT.”</div>
+            <h2 class="section-heading" id="how-heading">
+              From your timetable
+              <br />
+              to your timeline.
+            </h2>
+          </div>
+          <p>
+            No elaborate study system.
+            <br />
+            Just a better way to spend a few minutes.
+          </p>
+        </div>
+        <div class="steps-grid">
+          <article class="step">
+            <span class="step-number">01 / YOUR SUBJECTS</span>
+            <div class="step-visual" aria-hidden="true">
+              <div class="mini-modules">
+                {[
+                  ['CR', 'Criminal Law', '#e7ab93'],
+                  ['CO', 'Contract Law', '#dcbce6'],
+                  ['TO', 'Tort Law', '#d6f675'],
+                ].map(([short, name, color]) => (
+                  <span>
+                    <i style={`background:${color}`}>{short}</i>
+                    {name}
+                    <Icon name="check" size={13} />
+                  </span>
+                ))}
+              </div>
+            </div>
+            <h3>Choose your subjects.</h3>
+            <p>Tell Wyllex what you’re studying. Make your feed feel like your degree.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">02 / YOUR FEED</span>
+            <div class="step-visual" aria-hidden="true">
+              <div class="mini-feed">
+                <span>YOUR DAILY DOSE OF LAW</span>
+                <strong>
+                  One concept.
+                  <br />
+                  One minute.
+                </strong>
+                <Icon name="play" />
+                <p>Tort Law · Made to make sense</p>
+              </div>
+            </div>
+            <h3>Meet your learning feed.</h3>
+            <p>Find short explanations, case stories, and the concepts you need to understand.</p>
+          </article>
+          <article class="step">
+            <span class="step-number">03 / YOUR MOMENTUM</span>
+            <div class="step-visual" aria-hidden="true">
+              <div class="mini-streak">
+                <div>
+                  <Icon name="flame" size={29} />
+                  <strong>
+                    7 days<small>Look at you go.</small>
+                  </strong>
+                </div>
+                <div>
+                  {['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day) => (
+                    <span>
+                      <i>
+                        <Icon name="check" size={11} />
+                      </i>
+                      {day}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <h3>A little, often.</h3>
+            <p>Watch, test yourself, and come back. Give the things you learn a chance to stick.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section class="waitlist-section" id="waitlist" aria-labelledby="waitlist-heading">
+      <span class="waitlist-star" aria-hidden="true">
+        ✳
+      </span>
+      <div class="container waitlist-grid">
+        <div class="waitlist-copy">
+          <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE.</div>
+          <h2 id="waitlist-heading">
+            Better scrolling.
+            <br />
+            Coming soon.
+          </h2>
+          <p>
+            Be first to hear when Wyllex is ready.
+            <br />A little Law in your feed. A lot more in your head.
+          </p>
+        </div>
+        <div>
+          <Waitlist client:load />
+          <p class="form-note signup-email">
+            Prefer to join by email?{' '}
+            <a href={`mailto:${site.contactEmail}?subject=Wyllex%20early%20access`}>
+              {site.contactEmail}
+            </a>
+            .
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

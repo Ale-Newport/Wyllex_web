@@ -1,0 +1,113 @@
+---
+import '../styles/global.css';
+import Header from '../components/ui/Header.astro';
+import Footer from '../components/ui/Footer.astro';
+import CookieConsent from '../components/ui/CookieConsent';
+import { site } from '../config/site';
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+}
+const { title = site.title, description = site.description, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#141610" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${site.url}/og.png`} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Wyllex. Law worth scrolling. A look inside the Wyllex learning feed."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${site.url}/og.png`} />
+    {noindex && <meta name="robots" content="noindex" />}
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: site.name,
+        url: site.url,
+        logo: `${site.url}/favicon.svg`,
+        email: site.contactEmail,
+        description: site.description,
+      })}
+    />
+    <noscript>
+      <style>
+        .experience {
+          height: auto !important;
+        }
+        .experience-sticky {
+          position: relative !important;
+        }
+        .no-script-story {
+          display: grid;
+          gap: 30px;
+          padding: 50px 24px;
+          background: #202819;
+        }
+        .no-script-story h2 {
+          font-size: 26px;
+          margin-bottom: 12px;
+        }
+        .no-script-story p {
+          color: #bec9ac;
+          line-height: 1.7;
+        }
+        .chapter-nav,
+        .mobile-menu-toggle {
+          display: none !important;
+        }
+        .mobile-nav {
+          position: static !important;
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: wrap !important;
+          padding: 8px 20px !important;
+          gap: 15px !important;
+        }
+        .mobile-nav a {
+          font-size: 12px !important;
+        }
+        .experience-inner {
+          padding-top: 130px !important;
+        }
+        .waitlist-form {
+          display: none !important;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">
+      Skip to content
+    </a>
+    <Header />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    {site.posthog.key && <CookieConsent client:idle />}
+  </body>
+</html>

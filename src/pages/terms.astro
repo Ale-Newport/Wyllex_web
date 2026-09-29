@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { site } from '../config/site';
+---
+
+<Layout
+  title="Terms — Wyllex"
+  description="Terms for the Wyllex website and early access waitlist."
+>
+  <section class="legal-main" data-theme="light">
+    <article class="legal-content">
+      <div class="eyebrow">A FEW THINGS TO KNOW.</div>
+      <h1>The terms.</h1>
+      <p class="legal-date">Last updated {site.legal.updated}</p>
+      <p class="legal-intro">
+        These terms cover your use of the Wyllex website and early access waitlist, operated by{' '}
+        {site.legal.operator}. By using the site or joining the list, you agree to these terms.
+      </p>
+      <h2>Wyllex is coming soon</h2>
+      <p>
+        The app is in development and is not yet publicly available. Joining the waitlist is free.
+        It does not create a purchase, guarantee an invitation or launch date, or reserve a
+        particular price or feature. We will contact you about early access using the email you
+        provide.
+      </p>
+      <h2>What the preview shows</h2>
+      <p>
+        The website demonstrates our intended product experience. Screens, lesson formats,
+        recommendations, focus tools, learning statistics, and progress figures are illustrative
+        examples. They are not actual user results or promises about your learning outcomes.
+        Features, subject coverage, compatibility, and availability may change before launch.
+      </p>
+      <h2>Learning, not legal advice</h2>
+      <p>
+        Educational examples are simplified, introductory material, primarily drawing on UK and EU
+        Law. They are not legal advice, a substitute for your university materials, or an
+        authoritative statement of current law. Check primary sources, your course requirements, and
+        the relevant jurisdiction when studying or applying any rule.
+      </p>
+      <h2>Joining and leaving</h2>
+      <p>
+        Please provide an email you are entitled to use. You may leave the waitlist at any time by
+        emailing <a href={`mailto:${site.contactEmail}?subject=Unsubscribe`}>{site.contactEmail}</a>{' '}
+        with “Unsubscribe” in the subject line. How we use your details is described in our{' '}
+        <a href="/privacy">Privacy Policy</a>.
+      </p>
+      <h2>Using the website</h2>
+      <p>
+        You may browse and share links for personal, lawful purposes. Do not misuse the signup form,
+        submit another person’s details without permission, attempt unauthorised access, interfere
+        with the site, or use automated tools to collect personal information.
+      </p>
+      <h2>Our content</h2>
+      <p>
+        The Wyllex name, original design, illustrations, interface demonstrations, and website copy
+        belong to Wyllex or their respective owners. These terms do not grant rights to reproduce or
+        commercially exploit them. Other product names mentioned belong to their owners and do not
+        imply endorsement or affiliation.
+      </p>
+      <h2>Availability and responsibility</h2>
+      <p>
+        We take reasonable care with the website, but do not promise uninterrupted availability or
+        that every educational example is complete or current. To the extent permitted by law, we
+        are not responsible for loss resulting from reliance on illustrative educational content or
+        interruptions beyond our reasonable control. Nothing here excludes liability that cannot
+        lawfully be excluded, including liability for fraud, or limits your statutory rights.
+      </p>
+      <h2>Changes and future app terms</h2>
+      <p>
+        We may update these terms as the product develops. Any app launch, subscription, or purchase
+        will have its own terms presented before you use or buy it. The version on this page applies
+        to your current use of this website.
+      </p>
+      <h2>Governing law and contact</h2>
+      <p>
+        These terms are governed by the laws of {site.legal.jurisdiction}, without removing any
+        mandatory protections available where you live. For questions, contact{' '}
+        <a href={`mailto:${site.contactEmail}`}>{site.contactEmail}</a>.
+      </p>
+    </article>
+  </section>
+</Layout>

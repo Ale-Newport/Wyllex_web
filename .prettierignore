@@ -1,0 +1,8 @@
+node_modules
+dist
+.astro
+.wrangler
+playwright-report
+test-results
+package-lock.json
+public/og.svg
