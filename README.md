@@ -2,9 +2,13 @@
 
 **Law worth scrolling.** A complete consumer website for the upcoming Wyllex iOS app. Built with Astro, React, TypeScript, Tailwind CSS and GSAP. Designed for Cloudflare Pages with one small signup Function and Supabase storage. No application server, authentication system, paid assets, stock photography, or service-role database key is required.
 
+## Visual identity
+
+Forest green is the primary brand colour, paired with paper and a restrained mint accent. The original folded-W mark is shared by the header, app UI, footer, favicon and social artwork. The product preview follows the current SwiftUI app's dark chrome, Reels, Study actions, modules and creation flow. [Brand notes and exported logo files](docs/brand.md) document the identity and reference sources.
+
 ## The experience
 
-One persistent CSS/SVG iPhone moves through a 700svh desktop story: introduction, subjects, the scrolling feed, five teaching formats, revision, recommendations, focus, progress, and the final product reveal. Mobile uses a shorter 580svh sequence, copy above the device, a fixed camera, and compact layouts. Chapter buttons allow direct navigation. Reduced motion replaces the long scroll with a single explorable panel. A server-rendered narrative and email signup fallback are available without JavaScript.
+One persistent CSS/SVG iPhone moves through a 700svh desktop story: introduction, subjects, the scrolling feed, five teaching formats, study aids, notes-to-reel creation, focus, progress, and the final product reveal. Mobile uses a shorter 580svh sequence, copy above the device, a fixed camera, and compact layouts. Chapter buttons allow direct navigation. Reduced motion replaces the long scroll with a single explorable panel. A server-rendered narrative and email signup fallback are available without JavaScript.
 
 The remaining page includes an eight-subject keyboard-accessible explorer, how it works, and the waitlist. `/privacy`, `/terms`, a custom 404, original social artwork, favicon, robots and sitemap are included. All app content and statistics are explicitly illustrative. No real student outcomes are asserted.
 
@@ -136,6 +140,8 @@ Only a newly inserted signup triggers an email. Delivery runs through `waitUntil
 
 ## Editing the brand and content
 
+- **`src/config/brand.json`** and **`src/components/ui/BrandMark.tsx`**: shared logo geometry and exported asset palette. Regenerate SVG/PNG files with `npm run assets`.
+- **`src/styles/brand.css`**: forest-green visual identity, dark app chrome and creation-screen treatment.
 - **`src/config/site.ts`**: brand, domain/canonical origin, contact, social links, App Store link, analytics/Supabase public settings and legal metadata. Empty social links render nothing.
 - **`src/lib/content.ts`**: the nine chapters and eight Law subject descriptions/examples.
 - **`src/components/sections/ProductExperience.tsx`**: scroll pacing, chapter controls, mobile/reduced-motion decisions and analytics milestones.
@@ -153,7 +159,7 @@ Semantic landmarks, a skip link, visible focus styles, keyboard subject tabs, as
 
 The test suite covers browser engines, small phones, tablet, navigation, reduced motion, signup states, keyboard controls, no-JavaScript fallback, metadata, links, missing pages and automated WCAG checks. Automated checks complement visual inspection; they do not certify full accessibility. Real iOS Safari and assistive-technology testing should also be part of ongoing releases.
 
-See [release validation](docs/validation.md) for the recorded browser checks, 25 passing unit tests and mobile Lighthouse results (97 performance; 100 accessibility, best practices and SEO), including the limits of local and mocked-provider testing.
+See [release validation](docs/validation.md) for the recorded browser checks, 25 passing unit tests and the initial release’s mobile Lighthouse results (97 performance; 100 accessibility, best practices and SEO), including the limits of local and mocked-provider testing.
 
 ## Founder decisions to confirm before public launch
 

@@ -4,7 +4,7 @@ import {
   FocusMode,
   FormatScreen,
   KnowledgeScreen,
-  PersonalizedScreen,
+  CreateReelScreen,
   ProgressCard,
   SubjectSelector,
 } from '../app/AppUI';
@@ -52,7 +52,7 @@ export function PhoneFrame({ stage, format }: { stage: number; format: number })
               }}
             >
               <FeedVideo />
-              <FeedVideo type="contract" />
+              <FeedVideo type="case" />
               <FeedVideo type="mind" />
             </div>
           </div>
@@ -66,7 +66,7 @@ export function PhoneFrame({ stage, format }: { stage: number; format: number })
             <KnowledgeScreen />
           </div>
           <div className={`app-screen ${stage === 5 ? 'is-visible' : ''}`} data-screen="personal">
-            <PersonalizedScreen />
+            <CreateReelScreen />
           </div>
           <div className={`app-screen ${stage === 6 ? 'is-visible' : ''}`} data-screen="focus">
             <FocusMode />
@@ -76,7 +76,15 @@ export function PhoneFrame({ stage, format }: { stage: number; format: number })
           </div>
           <BottomNavigation
             active={
-              stage === 4 ? 'Saved' : stage === 7 ? 'Progress' : stage === 1 ? 'Learn' : 'Home'
+              stage === 5
+                ? 'Create'
+                : stage === 4
+                  ? 'Library'
+                  : stage === 7
+                    ? 'More'
+                    : stage === 1
+                      ? 'Modules'
+                      : 'Reels'
             }
           />
           <div className="home-indicator" />

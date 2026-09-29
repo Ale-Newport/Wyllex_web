@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/brand.css';
 import manropeFont from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2?url';
 import bodyFont from '@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2?url';
 import Header from '../components/ui/Header.astro';
@@ -22,7 +23,7 @@ const canonical = new URL(Astro.url.pathname, site.url).href;
     <link rel="preload" href={manropeFont} as="font" type="font/woff2" crossorigin="anonymous" />
     <link rel="preload" href={bodyFont} as="font" type="font/woff2" crossorigin="anonymous" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#141610" />
+    <meta name="theme-color" content="#062f28" />
     <meta name="description" content={description} />
     <title>{title}</title>
     <link rel="canonical" href={canonical} />

@@ -18,7 +18,7 @@ Checks cover all nine product chapters, browser console errors, navigation, keyb
 
 Responsive coverage includes 320 × 568, 375 × 667, 390 × 844, 768 × 1024 and desktop. Manual visual review covered the hero and product sequence, the phone frame, subject explorer, supporting sections, waitlist, footer and both legal pages. Real iOS Safari, VoiceOver and physical-device scrolling remain useful release checks; WebKit engine tests are not a substitute for every real device.
 
-## Lighthouse
+## Lighthouse — initial visual release
 
 Lighthouse 13.5.0, mobile simulated throttling, local HTTPS Pages server, 29 September 2026:
 
@@ -40,3 +40,7 @@ No production service credentials were supplied. Successful and duplicate signup
 Before accepting public signups, apply the migration, configure Supabase, and verify a real signup, case-insensitive duplicate and denied public reads/updates/deletes. If enabled, verify Resend delivery and PostHog consent with the real projects. Provision the Cloudflare Pages project, attach the domain, set the www redirect and confirm HTTPS. The README contains the complete setup and founder/legal confirmation checklist.
 
 The npm override pins Miniflare's `undici` dependency to 7.29.1 to avoid the advisory reported by the initially resolved version. Re-evaluate this override with future Wrangler upgrades.
+
+## Forest identity update
+
+The redesign was checked again with `npm run check` and the Chromium, WebKit and Firefox suite. The tests now additionally verify that focusing a chapter cannot scroll the sticky stage internally, and that the creation CTA fits inside the phone screen. Manual review covered the new forest/paper identity, folded-W logo, animated offer scene, notes-to-reel screen and mobile waitlist. The Lighthouse numbers above are from the initial visual release, not a fresh measurement of this redesign.

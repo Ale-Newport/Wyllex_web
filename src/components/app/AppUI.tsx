@@ -1,15 +1,17 @@
+import { BrandMark } from '../ui/BrandMark';
+import { OfferScene } from './OfferScene';
 import { Icon, type IconName } from '../ui/Icon';
 
-export function BottomNavigation({ active = 'Home' }: { active?: string }) {
+export function BottomNavigation({ active = 'Reels' }: { active?: string }) {
   return (
     <div className="app-nav">
       {(
         [
-          ['Home', 'home'],
-          ['Learn', 'book'],
-          ['Saved', 'bookmark'],
-          ['Progress', 'chart'],
-          ['Profile', 'user'],
+          ['Reels', 'play'],
+          ['Modules', 'book'],
+          ['Create', 'plus'],
+          ['Library', 'grid'],
+          ['More', 'menu'],
         ] as [string, IconName][]
       ).map(([label, icon]) => (
         <div className={label === active ? 'selected' : ''} key={label}>
@@ -35,7 +37,9 @@ export function VideoCaption({
   return (
     <div className="video-caption">
       <div className="presenter">
-        <span className="mini-mark">w</span>
+        <span className="mini-mark">
+          <BrandMark size={19} />
+        </span>
         <strong>Wyllex</strong>
         <span className="verified">✓</span>
         <span>· {part}</span>
@@ -204,65 +208,90 @@ function ContractArtwork() {
   );
 }
 export function FeedVideo({
-  type = 'case',
+  type = 'offer',
   format = 'CASE STORY',
 }: {
-  type?: 'case' | 'mind' | 'contract';
+  type?: 'case' | 'mind' | 'contract' | 'offer';
   format?: string;
 }) {
   const data =
-    type === 'case'
+    type === 'offer'
       ? {
           headline: (
             <>
-              It started
+              An offer.
               <br />
-              with a <em>snail.</em>
+              <em>Not yet a deal.</em>
             </>
           ),
-          title: 'Donoghue v Stevenson',
-          module: 'Tort Law',
-          time: '0:18 / 1:02',
+          title: 'When is an offer communicated?',
+          module: 'Contract Law',
+          time: '0:08 / 0:45',
         }
-      : type === 'mind'
+      : type === 'case'
         ? {
             headline: (
               <>
-                A guilty act needs
-                <br />a <em>guilty mind.</em>
-              </>
-            ),
-            title: 'Mens rea in 60 seconds',
-            module: 'Criminal Law',
-            time: '0:12 / 1:00',
-          }
-        : {
-            headline: (
-              <>
-                A promise.
+                It started
                 <br />
-                Or a <em>contract?</em>
+                with a <em>snail.</em>
               </>
             ),
-            title: 'Offer vs invitation to treat',
-            module: 'Contract Law',
-            time: '0:08 / 0:54',
-          };
+            title: 'Donoghue v Stevenson',
+            module: 'Tort Law',
+            time: '0:18 / 1:02',
+          }
+        : type === 'mind'
+          ? {
+              headline: (
+                <>
+                  A guilty act needs
+                  <br />a <em>guilty mind.</em>
+                </>
+              ),
+              title: 'Mens rea in 60 seconds',
+              module: 'Criminal Law',
+              time: '0:12 / 1:00',
+            }
+          : {
+              headline: (
+                <>
+                  A promise.
+                  <br />
+                  Or a <em>contract?</em>
+                </>
+              ),
+              title: 'Offer vs invitation to treat',
+              module: 'Contract Law',
+              time: '0:08 / 0:54',
+            };
   return (
     <div className={`feed-video video-${type}`}>
       <div className="video-top">
         <span>
-          For you <i />
+          <span className="feed-tab">Following</span> For you
         </span>
         <Icon name="grid" size={19} />
       </div>
       <div className="format-label">
-        <span /> {format}
+        <span /> {type === 'offer' ? 'ANIMATED STORY' : format}
       </div>
       <h2 className="video-headline">{data.headline}</h2>
-      {type === 'case' ? <CaseArtwork /> : type === 'mind' ? <MindArtwork /> : <ContractArtwork />}
+      {type === 'offer' ? (
+        <OfferScene />
+      ) : type === 'case' ? (
+        <CaseArtwork />
+      ) : type === 'mind' ? (
+        <MindArtwork />
+      ) : (
+        <ContractArtwork />
+      )}
       <div className="video-subtitle">
-        {type === 'case' ? (
+        {type === 'offer' ? (
+          <>
+            <mark>Received doesn’t mean accepted.</mark>
+          </>
+        ) : type === 'case' ? (
           <>
             A small discovery.
             <br />
@@ -281,17 +310,22 @@ export function FeedVideo({
       <div className="video-actions">
         <span>
           <Icon name="heart" size={23} />
-          248
+          Like
         </span>
         <span>
-          <Icon name="bookmark" size={22} />
-          Save
+          <Icon name="book" size={22} />
+          Study
         </span>
         <span>
-          <Icon name="volume" size={21} />
+          <Icon name="share" size={21} />
+          Share
         </span>
       </div>
-      <VideoCaption title={data.title} module={data.module} part="60-second Law" />
+      <VideoCaption
+        title={data.title}
+        module={data.module}
+        part={type === 'offer' ? '45-second Law' : '60-second Law'}
+      />
       <div className="video-time">
         <span>
           <Icon name="play" size={9} />
@@ -309,25 +343,25 @@ export function SubjectSelector() {
   return (
     <div className="app-page subjects-screen">
       <div className="app-wordmark">
-        wyllex<span>✳</span>
+        <BrandMark size={26} />
+        <span>Modules</span>
       </div>
-      <span className="app-kicker">LET’S MAKE THIS YOURS</span>
+      <span className="app-kicker">YOUR DEGREE, IN ONE PLACE</span>
       <h2>
-        What’s on
+        Your course.
         <br />
-        your timetable?
+        Your starting point.
       </h2>
       <p>
-        Choose your Law subjects.
-        <br />
-        We’ll build your feed around them.
+        LLB Law · Year 1<br />
+        Choose the modules you’re studying.
       </p>
       <div className="subject-options">
         {[
-          ['Criminal Law', 'CR', '#e7ab93'],
-          ['Contract Law', 'CO', '#dcbce6'],
-          ['Tort Law', 'TO', '#d6f675'],
-          ['Constitutional Law', 'PU', '#aec9f2'],
+          ['Criminal Law', 'CR', '#dfb09a'],
+          ['Contract Law', 'CO', '#d8c5d6'],
+          ['Tort Law', 'TO', '#b8e3ce'],
+          ['Constitutional Law', 'PU', '#b5cad7'],
           ['EU Law', 'EU', '#f4d78b'],
         ].map(([name, short, color], i) => (
           <div
@@ -352,12 +386,17 @@ export function SubjectSelector() {
 }
 export function FormatScreen({ format }: { format: number }) {
   const names = ['THE EXPLAINER', 'ANIMATED CONCEPT', 'CASE STORY', 'THE BREAKDOWN', 'RAPID RECAP'];
-  if (format === 2) return <FeedVideo format={names[format]} />;
+  if (format === 2)
+    return (
+      <div className="feed-track">
+        <FeedVideo type="offer" format={names[format]} />
+      </div>
+    );
   return (
     <div className={`format-screen format-${format}`}>
       <div className="video-top">
         <span>
-          For you <i />
+          <span className="feed-tab">Following</span> For you
         </span>
         <Icon name="grid" size={19} />
       </div>
@@ -426,7 +465,7 @@ export function FormatScreen({ format }: { format: number }) {
               strokeWidth="3"
             />
             <path d="M124 107h15" stroke="#484036" strokeWidth="3" />
-            <path d="M175 205h16v22h-16z" fill="#d6f675" />
+            <path d="M175 205h16v22h-16z" fill="#b8e3ce" />
           </svg>
           <div className="speech-label">
             “Something of value,
@@ -467,7 +506,9 @@ export function FormatScreen({ format }: { format: number }) {
         </div>
       )}
       <div className="format-bottom">
-        <span className="mini-mark">w</span>
+        <span className="mini-mark">
+          <BrandMark size={19} />
+        </span>
         <strong>
           {format === 0
             ? 'Consideration explained'
@@ -522,9 +563,9 @@ export function KnowledgeScreen() {
     <div className="app-page knowledge-screen">
       <div className="app-section-title">
         <Icon name="bookmark" />
-        Your learning
+        Study aid
       </div>
-      <span className="app-kicker">ONE VIDEO. MORE UNDERSTANDING.</span>
+      <span className="app-kicker">SUMMARY · KEY TAKEAWAYS · QUIZ</span>
       <h2>Make it stick.</h2>
       <div className="case-summary">
         <span>TORT LAW · CASE NOTE</span>
@@ -538,65 +579,72 @@ export function KnowledgeScreen() {
       </div>
       <QuizCard />
       <div className="xp-pill">
-        <Icon name="spark" size={14} /> +20 learning points
+        <Icon name="spark" size={14} /> Saved to your learning library
       </div>
     </div>
   );
 }
-export function MasteryIndicator({ value, color }: { value: number; color: string }) {
+export function CreateReelScreen() {
   return (
-    <div className="mastery">
-      <span style={{ width: `${value}%`, background: color }} />
-    </div>
-  );
-}
-export function PersonalizedScreen() {
-  return (
-    <div className="app-page personalized-screen">
+    <div className="app-page creation-screen">
       <div className="app-section-title">
-        <Icon name="spark" />
-        Made for you
+        <Icon name="plus" />
+        Create a reel
       </div>
       <h2>
-        Your next
-        <br />
-        “I get it.”
+        A topic.
+        <br />A fresh perspective.
       </h2>
-      <p>A little more on the tricky bits.</p>
-      <div className="exam-note">
-        <span>
-          <Icon name="clock" size={18} />
-        </span>
+      <p>Start with what you’re studying.</p>
+      <div className="creation-tabs">
+        <span>Topic</span>
+        <span className="active">My notes</span>
+        <span>Script</span>
+      </div>
+      <div className="notes-document">
         <div>
-          <strong>Let’s get revision-ready</strong>
-          <small>Your Contract Law exam · in 14 days</small>
+          <Icon name="document" size={18} />
+          <span>
+            Contract_Law_Week_3.pdf<small>Added to your notes</small>
+          </span>
+          <Icon name="check" size={15} />
         </div>
+        <h3>Offer & acceptance</h3>
+        <p>
+          An offer must be communicated.
+          <br />
+          Acceptance is a separate step.
+        </p>
+        <i />
+        <i />
+        <i />
       </div>
-      <span className="app-kicker">RECOMMENDED FOR YOU</span>
-      {[
-        ['Contract Law', 'Consideration', 72, '#dcbce6'],
-        ['Criminal Law', 'Mens rea', 41, '#e7ab93'],
-        ['Tort Law', 'Duty of care', 83, '#bad461'],
-      ].map(([module, topic, value, color]) => (
-        <div className="recommendation" key={module}>
-          <div>
-            <span style={{ background: String(color) }}>
-              <Icon name="play" size={17} />
-            </span>
-            <p>
-              {module}
-              <strong>{topic}</strong>
-            </p>
-            <b>{value}%</b>
+      <span className="app-kicker">CHOOSE HOW TO SEE IT</span>
+      <div className="creation-modes">
+        {(
+          [
+            ['Avatar', 'user'],
+            ['Animation', 'layers'],
+            ['Story', 'book'],
+            ['Mixed', 'grid'],
+          ] as [string, IconName][]
+        ).map(([label, icon]) => (
+          <div className={label === 'Story' ? 'selected' : ''} key={label}>
+            <Icon name={icon} size={18} />
+            <span>{label}</span>
           </div>
-          <MasteryIndicator value={Number(value)} color={String(color)} />
-          <small>{Number(value) < 50 ? 'Worth another look' : 'Building your understanding'}</small>
-        </div>
-      ))}
-      <div className="based-on">
-        <Icon name="layers" size={14} />
-        Your subjects + your learning so far
+        ))}
       </div>
+      <div className="creation-settings">
+        <span>English</span>
+        <span>45 seconds</span>
+        <span>Vertical</span>
+      </div>
+      <div className="app-button">
+        <Icon name="play" size={15} />
+        Create my reel
+      </div>
+      <span className="app-footnote">Your material. A different way to understand it.</span>
     </div>
   );
 }
@@ -615,7 +663,7 @@ export function FocusMode() {
             cy="110"
             r="101"
             fill="none"
-            stroke="#d6f675"
+            stroke="#b8e3ce"
             strokeWidth="4"
             strokeLinecap="round"
             strokeDasharray="635"
@@ -645,7 +693,9 @@ export function FocusMode() {
         ))}
       </div>
       <div className="available">
-        <span className="mini-mark">w</span>
+        <span className="mini-mark">
+          <BrandMark size={19} />
+        </span>
         <strong>Wyllex</strong>
         <span>
           Ready when you are <i />

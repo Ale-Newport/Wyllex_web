@@ -22,7 +22,7 @@ test('the continuous phone story reaches every chapter without console errors', 
     'The feed',
     'Fresh formats',
     'Make it stick',
-    'Your own pace',
+    'Your material',
     'Find your focus',
     'See your progress',
     'All together',
@@ -30,6 +30,13 @@ test('the continuous phone story reaches every chapter without console errors', 
     await page.getByRole('button', { name, exact: true }).click();
     await expect(page.locator('.experience')).toHaveAttribute('data-stage', String(index + 1));
     await expect(page.locator('.phone-frame')).toBeInViewport();
+    // Focusing a chapter must never scroll the clipped stage itself under the header.
+    expect(await page.locator('.experience-sticky').evaluate((el) => el.scrollTop)).toBe(0);
+    if (index === 4) {
+      const screen = await page.locator('.creation-screen').boundingBox();
+      const action = await page.locator('.creation-screen .app-button').boundingBox();
+      expect(action!.y + action!.height).toBeLessThan(screen!.y + screen!.height - 8);
+    }
   }
   expect(errors).toEqual([]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(

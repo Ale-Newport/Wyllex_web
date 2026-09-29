@@ -21,8 +21,21 @@ export type IconName =
   | 'apple'
   | 'lock'
   | 'volume'
-  | 'grid';
+  | 'grid'
+  | 'document'
+  | 'share';
 const paths: Record<IconName, React.ReactNode> = {
+  document: (
+    <>
+      <path d="M14 3H5v18h14V8l-5-5Z" />
+      <path d="M14 3v5h5M8 12h8M8 16h6" />
+    </>
+  ),
+  share: (
+    <>
+      <path d="m14 5 7 6-7 6v-4c-5 0-8 2-11 6 0-8 5-10 11-10V5Z" />
+    </>
+  ),
   arrow: (
     <>
       <path d="M5 12h14M13 6l6 6-6 6" />

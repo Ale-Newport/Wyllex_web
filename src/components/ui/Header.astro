@@ -1,14 +1,13 @@
 ---
+import { BrandMark } from './BrandMark';
 import { primaryCta } from '../../config/site';
 ---
 
 <header class:list={['site-header', { 'on-light': Astro.url.pathname !== '/' }]} id="site-header">
   <div class="header-inner">
     <a class="wordmark" href="/" aria-label="Wyllex home">
-      wyllex
-      <span class="brand-star" aria-hidden="true">
-        ✳
-      </span>
+      <BrandMark size={36} />
+      <span>wyllex</span>
     </a>
     <nav class="desktop-nav" aria-label="Main navigation">
       <a href="/#product">Product</a>
@@ -48,15 +47,18 @@ import { primaryCta } from '../../config/site';
   const header = document.querySelector<HTMLElement>('#site-header');
   const toggle = document.querySelector<HTMLButtonElement>('.mobile-menu-toggle');
   const menu = document.querySelector<HTMLElement>('#mobile-nav');
-  const lightSections = document.querySelectorAll('[data-theme="light"]');
+  const themedSections = document.querySelectorAll('[data-theme]');
   let ticking = false;
   function updateHeader() {
     if (!header) return;
     header.classList.toggle('scrolled', window.scrollY > 20);
-    const onLight = Array.from(lightSections).some((section) => {
+    let onLight = false;
+    for (const section of themedSections) {
       const rect = section.getBoundingClientRect();
-      return rect.top <= 45 && rect.bottom > 45;
-    });
+      if (rect.top <= 45 && rect.bottom > 45) {
+        onLight = section.getAttribute('data-theme') === 'light';
+      }
+    }
     header.classList.toggle('on-light', onLight);
     const sections = ['product', 'subjects', 'how-it-works'];
     let active = '';

@@ -16,23 +16,23 @@
 }
 
 @theme {
-  --color-ink: #151713;
-  --color-paper: #f5f5ed;
-  --color-lime: #d6f675;
+  --color-ink: #123d33;
+  --color-paper: #f4f2eb;
+  --color-accent: #b8e3ce;
   --font-sans: 'DM Sans Variable', sans-serif;
   --font-display: 'Manrope Variable', sans-serif;
 }
 :root {
   font-family: var(--font-sans);
-  color: #151713;
-  background: #141610;
+  color: #123d33;
+  background: #062f28;
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   --ease: cubic-bezier(0.2, 0.75, 0.25, 1);
-  --ink: #151713;
-  --paper: #f5f5ed;
-  --lime: #d6f675;
+  --ink: #123d33;
+  --paper: #f4f2eb;
+  --accent: #b8e3ce;
 }
 * {
   box-sizing: border-box;
@@ -70,8 +70,8 @@ button:disabled {
   cursor: wait;
 }
 ::selection {
-  background: #d6f675;
-  color: #151713;
+  background: #b8e3ce;
+  color: #123d33;
 }
 h1,
 h2,
@@ -93,7 +93,7 @@ summary:focus-visible {
   left: 16px;
   z-index: 200;
   transform: translateY(-160%);
-  background: var(--lime);
+  background: var(--accent);
   padding: 12px 22px;
   border-radius: 8px;
 }
@@ -124,7 +124,7 @@ summary:focus-visible {
   gap: 10px;
 }
 .tiny-star {
-  color: var(--lime);
+  color: var(--accent);
   font-size: 19px;
   line-height: 1;
 }
@@ -152,11 +152,11 @@ summary:focus-visible {
 .button:active {
   transform: translateY(0) scale(0.98);
 }
-.button-lime {
-  background: var(--lime);
+.button-primary {
+  background: var(--accent);
   color: var(--ink);
 }
-.button-lime:hover {
+.button-primary:hover {
   background: #e2ff98;
 }
 .button-dark {
@@ -196,9 +196,9 @@ summary:focus-visible {
   place-items: center;
 }
 .text-button:hover .play-circle {
-  background: var(--lime);
+  background: var(--accent);
   color: var(--ink);
-  border-color: var(--lime);
+  border-color: var(--accent);
 }
 /* Navigation */
 .site-header {
@@ -215,15 +215,15 @@ summary:focus-visible {
   border-bottom: 1px solid transparent;
 }
 .site-header.scrolled {
-  background: #151713d9;
+  background: #123d33d9;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-color: #ffffff10;
 }
 .site-header.on-light {
-  background: #f5f5edef;
+  background: #f4f2ebef;
   color: var(--ink);
-  border-color: #15171312;
+  border-color: #123d3312;
 }
 .header-inner {
   width: min(1320px, calc(100% - 96px));
@@ -244,7 +244,7 @@ summary:focus-visible {
   gap: 3px;
 }
 .wordmark .brand-star {
-  color: var(--lime);
+  color: var(--accent);
   font-size: 23px;
   letter-spacing: 0;
   font-weight: 500;
@@ -295,9 +295,9 @@ summary:focus-visible {
     color 0.2s;
 }
 .nav-cta:hover {
-  background: var(--lime);
+  background: var(--accent);
   color: var(--ink);
-  border-color: var(--lime);
+  border-color: var(--accent);
 }
 .mobile-menu-toggle {
   display: none;
@@ -315,8 +315,8 @@ summary:focus-visible {
 .experience {
   height: 700svh;
   position: relative;
-  background: #141610;
-  color: #f4f5ec;
+  background: #062f28;
+  color: #f4f2eb;
   --story-progress: 0;
   --feed-offset: 0;
 }
@@ -325,7 +325,7 @@ summary:focus-visible {
   min-height: 680px;
   position: sticky;
   top: 0;
-  overflow: hidden;
+  overflow: clip;
   isolation: isolate;
 }
 .experience-inner {
@@ -397,7 +397,7 @@ summary:focus-visible {
   animation: copy-in 0.55s var(--ease) both;
 }
 .story-copy .eyebrow {
-  color: #a8af99;
+  color: #abc6b8;
   margin-bottom: 30px;
 }
 .story-copy h1 {
@@ -410,14 +410,14 @@ summary:focus-visible {
   width: max-content;
 }
 .story-copy h1 > span:not(.headline-period) {
-  color: var(--lime);
+  color: var(--accent);
 }
 .headline-period {
   position: absolute;
   right: -41px;
   top: 3px;
   font-size: 45px;
-  color: var(--lime);
+  color: var(--accent);
   transform: rotate(-13deg);
 }
 .story-copy h2 {
@@ -432,7 +432,7 @@ summary:focus-visible {
 .story-copy > p {
   font-size: 17px;
   line-height: 1.7;
-  color: #aeb3a3;
+  color: #b7c9c0;
   max-width: 360px;
   margin-top: 29px;
 }
@@ -466,7 +466,7 @@ summary:focus-visible {
   color: #a8b295;
 }
 .chapter-detail > span:first-child {
-  color: var(--lime);
+  color: var(--accent);
   font-size: 12px;
 }
 .chapter-detail > div {
@@ -517,7 +517,7 @@ summary:focus-visible {
 }
 .side-count {
   font-size: 11px;
-  color: var(--lime);
+  color: var(--accent);
   white-space: nowrap;
 }
 .side-count i {
@@ -575,14 +575,14 @@ summary:focus-visible {
 .note-icon {
   display: grid;
   place-items: center;
-  background: var(--lime);
+  background: var(--accent);
   color: var(--ink);
   width: 36px;
   height: 36px;
   border-radius: 9px;
 }
 .note-icon.lavender {
-  background: #dcbce6;
+  background: #d8c5d6;
 }
 .experience-bottom {
   position: absolute;
@@ -617,7 +617,7 @@ summary:focus-visible {
   width: 2px;
   height: 5px;
   border-radius: 2px;
-  background: var(--lime);
+  background: var(--accent);
   animation: scroll-hint 2s infinite;
 }
 .chapter-nav {
@@ -646,7 +646,7 @@ summary:focus-visible {
 }
 .chapter-nav button[aria-current] > span:first-child {
   width: 22px;
-  background: var(--lime);
+  background: var(--accent);
 }
 .chapter-tooltip {
   position: absolute;
@@ -664,7 +664,7 @@ summary:focus-visible {
 }
 .demo-disclaimer {
   font-size: 9px;
-  color: #89917c;
+  color: #a2bcaf;
   letter-spacing: 0.02em;
   text-align: right;
   width: 260px;
@@ -674,7 +674,7 @@ summary:focus-visible {
   bottom: 0;
   left: 0;
   height: 2px;
-  background: var(--lime);
+  background: var(--accent);
   width: 100%;
   transform: scaleX(var(--story-progress));
   transform-origin: left;
@@ -695,9 +695,9 @@ summary:focus-visible {
   border-radius: 5px;
 }
 .format-tags .active {
-  background: var(--lime);
+  background: var(--accent);
   color: var(--ink);
-  border-color: var(--lime);
+  border-color: var(--accent);
 }
 .ecosystem-tags {
   position: absolute;
@@ -920,7 +920,7 @@ summary:focus-visible {
   color: #242e19;
 }
 .app-nav .selected svg {
-  fill: #bccf8c;
+  fill: #8fc3ab;
   stroke-width: 1.8;
 }
 .home-indicator {
@@ -943,7 +943,7 @@ summary:focus-visible {
   position: relative;
   overflow: hidden;
   color: #28321f;
-  background: #e0e5c9;
+  background: #f0eade;
 }
 .video-top {
   display: flex;
@@ -1063,7 +1063,7 @@ summary:focus-visible {
   display: grid;
   place-items: center;
   background: var(--ink);
-  color: var(--lime);
+  color: var(--accent);
   font-weight: 850;
   font-size: 16px;
   font-family: var(--font-display);
@@ -1615,7 +1615,7 @@ summary:focus-visible {
   justify-content: center;
   align-items: center;
   gap: 13px;
-  color: var(--lime);
+  color: var(--accent);
 }
 .focus-timer strong {
   font-size: 47px;
@@ -1685,7 +1685,7 @@ summary:focus-visible {
   margin-top: 16px;
 }
 .available .mini-mark {
-  background: var(--lime);
+  background: var(--accent);
   color: var(--ink);
 }
 .available > strong {
@@ -1704,7 +1704,7 @@ summary:focus-visible {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--lime);
+  background: var(--accent);
 }
 .streak-card {
   padding: 21px 15px 15px;
@@ -2133,7 +2133,7 @@ summary:focus-visible {
   width: 21px;
   height: 21px;
   background: var(--ink);
-  color: var(--lime);
+  color: var(--accent);
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -2429,7 +2429,7 @@ summary:focus-visible {
 }
 /* Waitlist and footer */
 .waitlist-section {
-  background: #d6f675;
+  background: #b8e3ce;
   position: relative;
   overflow: hidden;
   padding: 102px 0;
@@ -2466,7 +2466,7 @@ summary:focus-visible {
   font-size: 550px;
   right: -130px;
   top: -140px;
-  color: #bde353;
+  color: #195443;
   line-height: 1;
   pointer-events: none;
 }
@@ -2555,7 +2555,7 @@ summary:focus-visible {
   width: 44px;
   height: 44px;
   background: #263718;
-  color: var(--lime);
+  color: var(--accent);
   border-radius: 50%;
   margin-bottom: 20px;
 }
@@ -2591,12 +2591,12 @@ summary:focus-visible {
   width: 15px;
   height: 15px;
   border: 2px solid #ffffff40;
-  border-top-color: var(--lime);
+  border-top-color: var(--accent);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
 }
 .site-footer {
-  background: #141610;
+  background: #062f28;
   color: #c9cdbf;
   padding: 58px 0 25px;
 }
@@ -2627,7 +2627,7 @@ summary:focus-visible {
 }
 .footer-links a:hover,
 .footer-links button:hover {
-  color: var(--lime);
+  color: var(--accent);
 }
 .footer-bottom {
   border-top: 1px solid #343c2b;
@@ -2652,7 +2652,7 @@ summary:focus-visible {
   z-index: 90;
   width: min(420px, calc(100% - 40px));
   padding: 22px;
-  background: #f5f5ed;
+  background: #f4f2eb;
   color: var(--ink);
   border: 1px solid #d6dccb;
   border-radius: 12px;
@@ -2974,7 +2974,7 @@ summary:focus-visible {
     height: 36px;
   }
   .on-light .mobile-menu-toggle {
-    border-color: #15171330;
+    border-color: #123d3330;
   }
   .mobile-nav {
     display: flex;
@@ -3000,7 +3000,7 @@ summary:focus-visible {
     letter-spacing: -0.03em;
   }
   .mobile-nav a:last-child {
-    color: var(--lime);
+    color: var(--accent);
   }
   .experience {
     height: 580svh;
@@ -3137,7 +3137,7 @@ summary:focus-visible {
     position: absolute;
     inset: -30px -20px -14px;
     z-index: -1;
-    background: linear-gradient(transparent, #141610 45%);
+    background: linear-gradient(transparent, #062f28 45%);
     pointer-events: none;
   }
   .chapter-nav button {
@@ -3554,7 +3554,7 @@ summary:focus-visible {
 
 /* Keep secondary text legible on every background. */
 .iphone-context {
-  color: #a6af96;
+  color: #b2ccc0;
 }
 .story-side {
   opacity: 1;
@@ -3612,7 +3612,7 @@ summary:focus-visible {
     gap: 11px;
   }
   .experience-bottom {
-    background: linear-gradient(transparent, #141610 25%);
+    background: linear-gradient(transparent, #062f28 25%);
     bottom: 5px;
     padding-top: 8px;
   }

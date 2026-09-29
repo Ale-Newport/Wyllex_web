@@ -1,0 +1,11 @@
+{
+  "markViewBox": "0 0 72 64",
+  "markPath": "M4 13h11l8 25 8-20h10l8 20 8-25h11L54 53H43l-7-18-7 18H18L4 13Zm54-8h11l-2 5H56l2-5Z",
+  "colors": {
+    "forest": "#073e33",
+    "deepForest": "#062f28",
+    "mint": "#b8e3ce",
+    "paper": "#f4f2eb",
+    "ink": "#123d33"
+  }
+}

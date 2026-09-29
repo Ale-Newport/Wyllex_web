@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ProductExperience from '../components/sections/ProductExperience';
 import SubjectExplorer from '../components/sections/SubjectExplorer';
 import Waitlist from '../components/sections/Waitlist';
+import { BrandMark } from '../components/ui/BrandMark';
 import { Icon } from '../components/ui/Icon';
 import { site } from '../config/site';
 ---
@@ -12,9 +13,7 @@ import { site } from '../config/site';
   <div class="page-content" data-theme="light">
     <section class="section-intro container" aria-labelledby="law-heading">
       <div class="eyebrow">
-        <span class="tiny-star" aria-hidden="true">
-          ✳
-        </span>
+        <span class="eyebrow-dot" aria-hidden="true" />
         ONE DISCIPLINE. A DIFFERENT APPROACH.
       </div>
       <div class="intro-grid">
@@ -76,9 +75,9 @@ import { site } from '../config/site';
             <div class="step-visual" aria-hidden="true">
               <div class="mini-modules">
                 {[
-                  ['CR', 'Criminal Law', '#e7ab93'],
-                  ['CO', 'Contract Law', '#dcbce6'],
-                  ['TO', 'Tort Law', '#d6f675'],
+                  ['CR', 'Criminal Law', '#dfb09a'],
+                  ['CO', 'Contract Law', '#d8c5d6'],
+                  ['TO', 'Tort Law', '#b8e3ce'],
                 ].map(([short, name, color]) => (
                   <span>
                     <i style={`background:${color}`}>{short}</i>
@@ -89,7 +88,10 @@ import { site } from '../config/site';
               </div>
             </div>
             <h3>Choose your subjects.</h3>
-            <p>Tell Wyllex what you’re studying. Make your feed feel like your degree.</p>
+            <p>
+              Choose your modules and add your notes. Start with the material that matters to your
+              course.
+            </p>
           </article>
           <article class="step">
             <span class="step-number">02 / YOUR FEED</span>
@@ -105,8 +107,11 @@ import { site } from '../config/site';
                 <p>Tort Law · Made to make sense</p>
               </div>
             </div>
-            <h3>Meet your learning feed.</h3>
-            <p>Find short explanations, case stories, and the concepts you need to understand.</p>
+            <h3>Make it a reel.</h3>
+            <p>
+              Choose a topic and a visual format. Turn the next tricky concept into something you
+              can watch.
+            </p>
           </article>
           <article class="step">
             <span class="step-number">03 / YOUR MOMENTUM</span>
@@ -131,15 +136,23 @@ import { site } from '../config/site';
               </div>
             </div>
             <h3>A little, often.</h3>
-            <p>Watch, test yourself, and come back. Give the things you learn a chance to stick.</p>
+            <p>
+              Watch, open Study, test yourself. Keep the reels you want to come back to in your
+              library.
+            </p>
           </article>
         </div>
       </div>
     </section>
-    <section class="waitlist-section" id="waitlist" aria-labelledby="waitlist-heading">
-      <span class="waitlist-star" aria-hidden="true">
-        ✳
-      </span>
+    <section
+      class="waitlist-section"
+      id="waitlist"
+      data-theme="dark"
+      aria-labelledby="waitlist-heading"
+    >
+      <div class="waitlist-watermark" aria-hidden="true">
+        <BrandMark size={560} />
+      </div>
       <div class="container waitlist-grid">
         <div class="waitlist-copy">
           <div class="eyebrow">YOUR NEXT CHAPTER STARTS HERE.</div>

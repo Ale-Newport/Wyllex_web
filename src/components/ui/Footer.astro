@@ -1,4 +1,5 @@
 ---
+import { BrandMark } from './BrandMark';
 import { site } from '../../config/site';
 ---
 
@@ -7,10 +8,8 @@ import { site } from '../../config/site';
     <div class="footer-top">
       <div class="footer-brand">
         <a href="/" class="wordmark" aria-label="Wyllex home">
-          wyllex
-          <span class="brand-star" aria-hidden="true">
-            ✳
-          </span>
+          <BrandMark size={36} />
+          <span>wyllex</span>
         </a>
         <p>Law worth scrolling.</p>
       </div>
@@ -37,7 +36,7 @@ import { site } from '../../config/site';
         © {new Date().getFullYear()} {site.name}. All rights reserved.
       </span>
       <span>
-        Made for curious minds. <span aria-hidden="true">✳</span>
+        Made for curious minds. <BrandMark size={16} />
       </span>
     </div>
   </div>

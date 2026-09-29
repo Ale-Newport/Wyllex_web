@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { PhoneFrame } from '../phone/PhoneFrame';
+import { BrandMark } from '../ui/BrandMark';
 import { Icon } from '../ui/Icon';
 import { chapters } from '../../lib/content';
 import { primaryCta, site } from '../../config/site';
@@ -101,15 +102,14 @@ export default function ProductExperience() {
     >
       <div className="experience-sticky">
         <div className="hero-glow" />
-        <div className="orbital-rings" aria-hidden="true">
-          <i />
-          <i />
-          <i />
+        <div className="brand-landscape" aria-hidden="true">
+          <BrandMark size={900} />
+          <div className="landscape-line" />
         </div>
         <div className="experience-inner">
           <div className="story-copy" key={stage}>
             <div className="eyebrow">
-              <span className="tiny-star">✳</span>
+              <span className="eyebrow-dot" aria-hidden="true" />
               {chapter.eyebrow}
             </div>
             {stage !== 0 && <h1 className="sr-only">Wyllex — Law worth scrolling</h1>}
@@ -118,7 +118,6 @@ export default function ProductExperience() {
                 Law worth
                 <br />
                 <span>scrolling.</span>
-                <span className="headline-period">✳</span>
               </h1>
             ) : (
               <h2>{chapter.title}</h2>
@@ -128,7 +127,7 @@ export default function ProductExperience() {
               <>
                 <div className="hero-actions">
                   <a
-                    className="button button-lime"
+                    className="button button-primary"
                     href={primaryCta.href}
                     onClick={() => stage === 0 && track('hero_cta_clicked')}
                   >
@@ -180,31 +179,31 @@ export default function ProductExperience() {
                 className={`floating-note note-one ${stage === 0 || stage === 8 ? 'visible' : ''}`}
               >
                 <span className="note-icon">
-                  <Icon name="spark" size={20} />
+                  <Icon name="layers" size={20} />
                 </span>
                 <div>
-                  <span>Your next “aha” moment</span>
-                  <strong>One scroll away.</strong>
+                  <span>FROM YOUR COURSE</span>
+                  <strong>Straight to your feed.</strong>
                 </div>
               </div>
               <div className={`floating-note note-two ${stage === 0 ? 'visible' : ''}`}>
                 <span className="note-icon lavender">
-                  <Icon name="bookmark" size={19} />
+                  <Icon name="book" size={19} />
                 </span>
                 <div>
-                  <strong>A case that stays with you.</strong>
-                  <span>Not just another saved video.</span>
+                  <strong>Watch. Tap Study. Remember.</strong>
+                  <span>A summary and a quick check.</span>
                 </div>
               </div>
               {stage === 8 && (
                 <div className="ecosystem-tags">
                   <span>
                     <Icon name="book" size={15} />
-                    Subjects
+                    Modules
                   </span>
                   <span>
                     <Icon name="bookmark" size={15} />
-                    Saved concepts
+                    Your library
                   </span>
                   <span>
                     <Icon name="spark" size={15} />

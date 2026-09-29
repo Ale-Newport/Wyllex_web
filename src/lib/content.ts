@@ -2,7 +2,7 @@ import type { IconName } from '../components/ui/Icon';
 export const chapters = [
   {
     label: 'Meet Wyllex',
-    eyebrow: 'LESS MINDLESS. MORE MEANINGFUL.',
+    eyebrow: 'YOUR LAW DEGREE. BROUGHT TO LIFE.',
     title: 'Law worth scrolling.',
     description:
       'Learn your degree through short, focused videos designed around what you actually need to know.',
@@ -13,7 +13,7 @@ export const chapters = [
     eyebrow: '01 / MAKE IT YOURS',
     title: 'Your degree becomes your feed.',
     description:
-      'Criminal. Contract. That module you’ve been putting off. Choose your subjects. We’ll take it from there.',
+      'Choose your university subjects. Bring your notes. Give your feed a starting point that’s yours.',
     icon: 'book',
   },
   {
@@ -37,15 +37,15 @@ export const chapters = [
     eyebrow: '04 / FROM “GOT IT” TO KNOWING IT',
     title: 'Watching is only the start.',
     description:
-      'Turn a good explanation into lasting knowledge. Test yourself, revisit a case, save the important bits.',
+      'Tap Study for the summary, the key takeaways, and a quick question. Give a good explanation a chance to stay.',
     icon: 'bookmark',
   },
   {
-    label: 'Your own pace',
-    eyebrow: '05 / LESS GUESSWORK',
-    title: 'Wyllex learns what you need to learn.',
+    label: 'Your material',
+    eyebrow: '05 / FROM YOUR NOTES TO YOUR FEED',
+    title: 'Your material. A new way in.',
     description:
-      'Your subjects, your quiz results, your next exam. A feed shaped around where you are and what needs another look.',
+      'Pick a topic, add your notes, choose a format. Create a reel around the part you want to understand.',
     icon: 'spark',
   },
   {
@@ -83,7 +83,7 @@ export const subjects = [
   {
     name: 'Criminal Law',
     short: 'CR',
-    color: '#e7ab93',
+    color: '#dfb09a',
     concepts: ['Mens rea', 'Actus reus', 'Murder & manslaughter'],
     title: 'A guilty act. A guilty mind.',
     summary:
@@ -96,7 +96,7 @@ export const subjects = [
   {
     name: 'Contract Law',
     short: 'CO',
-    color: '#dcbce6',
+    color: '#d8c5d6',
     concepts: ['Offer & acceptance', 'Consideration', 'Promissory estoppel'],
     title: 'When does a promise count?',
     summary:
@@ -109,7 +109,7 @@ export const subjects = [
   {
     name: 'Tort Law',
     short: 'TO',
-    color: '#d6f675',
+    color: '#b8e3ce',
     concepts: ['Duty of care', 'Breach & causation', 'Negligence'],
     title: 'One snail. A whole new principle.',
     summary:
@@ -122,7 +122,7 @@ export const subjects = [
   {
     name: 'Public Law',
     short: 'PU',
-    color: '#aec9f2',
+    color: '#b5cad7',
     concepts: ['Parliamentary sovereignty', 'Judicial review', 'Article 6 ECHR'],
     title: 'Who holds power to account?',
     summary:
