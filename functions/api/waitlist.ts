@@ -89,7 +89,8 @@ export async function handleWaitlist(
       method: 'POST',
       headers: {
         apikey: key,
-        Authorization: `Bearer ${key}`,
+        // Publishable keys are not JWTs; only legacy anon keys use Bearer auth.
+        ...(key.startsWith('sb_publishable_') ? {} : { Authorization: `Bearer ${key}` }),
         'Content-Type': 'application/json',
         Prefer: 'return=minimal',
       },

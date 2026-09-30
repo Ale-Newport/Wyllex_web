@@ -67,7 +67,23 @@ describe('waitlist function', () => {
     expect(url).toBe('https://project.supabase.co/rest/v1/waitlist');
     expect(options.headers.Prefer).toBe('return=minimal');
     expect(options.headers.apikey).toBe('test-anon-key');
+    expect(options.headers.Authorization).toBe('Bearer test-anon-key');
     expect(JSON.parse(options.body).email).toBe('you@example.com');
+  });
+  it('sends a publishable key only as apikey, never as a bearer JWT', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(new Response(null, { status: 201 }));
+    vi.stubGlobal('fetch', fetchMock);
+    const response = await handleWaitlist(
+      request({ email: 'you@example.com' }),
+      { ...env, PUBLIC_SUPABASE_ANON_KEY: 'sb_publishable_test' },
+      vi.fn(),
+    );
+    expect(response.status).toBe(201);
+    expect(await response.json()).toEqual({ status: 'joined' });
+    const [, options] = fetchMock.mock.calls[0];
+    expect(options.headers.apikey).toBe('sb_publishable_test');
+    expect(options.headers).not.toHaveProperty('Authorization');
+    expect(options.headers.Prefer).toBe('return=minimal');
   });
   it('handles duplicate emails and does not send another confirmation', async () => {
     vi.stubGlobal(

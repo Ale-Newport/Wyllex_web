@@ -59,14 +59,14 @@ Before the first browser-test run, install browsers with `npx playwright install
 | Variable                   | Required     | Where                              | Purpose                                                        |
 | -------------------------- | ------------ | ---------------------------------- | -------------------------------------------------------------- |
 | `PUBLIC_SUPABASE_URL`      | For signup   | Pages runtime / `.dev.vars`        | Supabase project URL                                           |
-| `PUBLIC_SUPABASE_ANON_KEY` | For signup   | Pages runtime / `.dev.vars`        | Public **anon** project key; RLS applies                       |
+| `PUBLIC_SUPABASE_ANON_KEY` | For signup   | Pages runtime / `.dev.vars`        | Public **publishable** key (`sb_publishable_…`); legacy anon JWT also supported; RLS applies |
 | `PUBLIC_POSTHOG_KEY`       | No           | Build / `.env`                     | PostHog project token; empty disables analytics and consent UI |
 | `PUBLIC_POSTHOG_HOST`      | With PostHog | Build / `.env`                     | Ingestion host; default `https://eu.i.posthog.com`             |
 | `PUBLIC_APP_STORE_URL`     | No           | Build / `.env`                     | Changes primary CTAs to the App Store                          |
 | `RESEND_API_KEY`           | No           | Pages runtime secret / `.dev.vars` | Optional signup confirmation email                             |
 | `RESEND_FROM_EMAIL`        | With Resend  | Pages runtime / `.dev.vars`        | Verified sender; defaults to brand contact in site config      |
 
-The Supabase variables keep the requested `PUBLIC_` names but signup uses them from the Function. An anon key is deliberately not privileged. **Never use a service-role key**, put Resend credentials in a public-prefixed variable, or commit environment files.
+The Supabase variables keep the requested `PUBLIC_` names but signup uses them from the Function. `PUBLIC_SUPABASE_ANON_KEY` accepts the recommended publishable key or a legacy anon JWT; both use the low-privilege anon role and RLS. Publishable keys are sent only in the `apikey` header, not as bearer JWTs. **Never use a service-role or `sb_secret_` key**, put Resend credentials in a public-prefixed variable, or commit environment files.
 
 Missing Supabase settings yield HTTP 503 and a friendly retry/contact message. Missing PostHog means zero analytics requests. Missing Resend means signups still work, without a confirmation email.
 
@@ -74,7 +74,7 @@ Missing Supabase settings yield HTTP 503 and a friendly retry/contact message. M
 
 1. Create a Supabase project, preferably in the region selected for your data policy.
 2. Apply `supabase/migrations/202609290001_waitlist.sql` in the SQL editor. Alternatively, link the project with the Supabase CLI and run `supabase db push`.
-3. Add the project URL and legacy public **anon** key to the Pages runtime environment. Do not use `service_role`.
+3. In Supabase **Settings → API Keys → Publishable and secret API keys**, copy the public **Publishable key**. Set it as `PUBLIC_SUPABASE_ANON_KEY` and the project URL as `PUBLIC_SUPABASE_URL` in the Pages production runtime environment. Do not use `service_role` or `sb_secret_` keys. Redeploy after changing bindings.
 4. Verify the migration's RLS policies and privileges before launch.
 5. Submit an address you control on a staging deployment. Verify one row, then submit its uppercase variant and verify the duplicate response and unchanged row count.
 6. Using the anon key, verify SELECT, UPDATE and DELETE are denied. Never grant public SELECT to make an insert response work.
