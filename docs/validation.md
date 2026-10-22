@@ -37,7 +37,7 @@ The font optimization uses self-hosted Latin WOFF2 files, explicit preloads, and
 
 No production service credentials were supplied. Successful and duplicate signup responses and email behavior were tested with mocked providers; the real Pages Function's missing-configuration response was exercised in each browser. No actual Supabase records or confirmation emails were created.
 
-Before accepting public signups, apply the migration, configure Supabase, and verify a real signup, case-insensitive duplicate and denied public reads/updates/deletes. If enabled, verify Resend delivery and PostHog consent with the real projects. Provision the Cloudflare Pages project, attach the domain, set the www redirect and confirm HTTPS. The README contains the complete setup and founder/legal confirmation checklist.
+Before accepting public signups, apply the migration, configure Supabase, and verify a real signup, case-insensitive duplicate and denied public reads/updates/deletes. If enabled, verify Resend delivery and PostHog consent with the real projects. Provision the Cloudflare Pages project, attach the domain, set the www redirect and confirm HTTPS. The [configuration guide](SETUP.md) contains the complete setup and founder/legal confirmation checklist.
 
 The npm override replaces `undici@7.29.0` with 7.29.1 to avoid the advisory reported by the initially resolved version. It targets that exact dependency version so npm 10 (Cloudflare's Node 22 build environment) and npm 11 apply the same override, without affecting other major versions of `undici`. Re-evaluate this override with future Wrangler upgrades.
 
